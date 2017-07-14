@@ -21,6 +21,7 @@ export default class Posts extends Component {
             postDataSource: ds
         }
         this.renderRow = this.renderRow.bind(this);
+        this.pressRow = this.pressRow.bind(this);
     }
     componentDidMount() {
         this.fetchPosts();
@@ -34,6 +35,13 @@ export default class Posts extends Component {
                     postDataSource: this.state.postDataSource.cloneWithRows(posts)
                 });
             });
+    }
+
+    pressRow(post) {
+        this.props.navigator.push({
+            id: 'details',
+            post: post
+        });
     }
 
     renderRow(post) {
@@ -50,7 +58,9 @@ export default class Posts extends Component {
             console.log(e)
         }
         return (
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => {
+                this.pressRow(post)
+            }}>
                 <View style={styles.row} >
                     {image}
                     <Text style={styles.text}>{post.data.title}</Text>
