@@ -6,7 +6,12 @@ import {
   View,
   Navigator
 } from 'react-native';
-import NavigationExperimental from 'react-native-deprecated-custom-components'
+
+import NavigationExperimental from 'react-native-deprecated-custom-components';
+
+import HeaderBar from './app/components/HeaderBar/HeaderBar'
+import Posts from './app/components/Posts/Posts';
+
 
 export default class subreddits extends Component {
   renderScene(route, navigator) {
@@ -14,7 +19,11 @@ export default class subreddits extends Component {
       case 'posts':
         return (
           <View style={styles.container}>
-            <Text>POSTS</Text>
+            <HeaderBar />
+            <Posts
+              navigator={navigator}
+              title="posts"
+            />
           </View>
         )
     }
